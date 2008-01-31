@@ -1,0 +1,12 @@
+AuthCASSimple.xs
+Changes
+lib/Apache/AuthCASSimple.pm
+LICENSE
+Makefile.PL
+MANIFEST
+MANIFEST.SKIP
+META.yml
+README
+scripts/delete_session_data.pl
+t/001_load.t
+Todo
