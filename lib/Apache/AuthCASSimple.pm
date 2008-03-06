@@ -9,7 +9,7 @@ use DynaLoader ();
 use Authen::CAS::Client;
 use vars qw($VERSION);
 
-$VERSION = '0.0.1';
+$VERSION = '0.0.2';
 
 if($ENV{MOD_PERL}) {
   no strict;
