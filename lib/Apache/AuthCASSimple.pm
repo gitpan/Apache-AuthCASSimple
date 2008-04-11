@@ -1,6 +1,8 @@
 package Apache::AuthCASSimple;
 
 use strict;
+use warnings;
+
 use Apache::Constants qw(:common :response M_GET);
 use Apache::ModuleConfig;
 use Apache::Log;
@@ -9,7 +11,7 @@ use DynaLoader ();
 use Authen::CAS::Client;
 use vars qw($VERSION);
 
-$VERSION = '0.0.2';
+$VERSION = '0.0.3';
 
 if($ENV{MOD_PERL}) {
   no strict;
@@ -385,7 +387,11 @@ sub CASFixDirectory ($$$) {
 sub NOModProxy ($) {
   shift->{_mod_proxy} = 0;
 }
-
+#
+# DIR_CREATE
+#
+# create default values 
+#
 sub DIR_CREATE {
   my $class = shift;
   my $self = {};
@@ -402,7 +408,11 @@ sub DIR_CREATE {
 
   return bless($self, $class);
 }
-
+#
+# DIR_MERGE
+#
+# create default values 
+#
 sub DIR_MERGE {
   my ($parent, $current) = @_;
 
@@ -495,6 +505,20 @@ Force the path of the session cookie for same policy in all subdirectories else 
 Apache mod_perl don't be use with mod_proxy. Default is off.
 
 =back
+
+=head1 METHODS
+
+=head2 handler
+
+used by apache
+
+=head2 DIR_CREATE
+
+set defaults values
+
+=head2 DIR_MERGE
+
+access deafault values
 
 =head1 VERSION
 
