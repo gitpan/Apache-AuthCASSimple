@@ -11,7 +11,7 @@ use DynaLoader ();
 use Authen::CAS::Client;
 use vars qw($VERSION);
 
-$VERSION = '0.0.3';
+$VERSION = '0.0.4';
 
 if($ENV{MOD_PERL}) {
   no strict;
@@ -63,7 +63,10 @@ sub handler ($) {
   }
 
   my $requested_url = _get_requested_url($r,$cfg);
-  my $login_url = $cas->login_url().$requested_url;
+  my $login_url = $requested_url;
+  # TODO better clean url
+  $login_url =~ s/\?/\&/;
+  $login_url = $cas->login_url().$login_url;
 
   # redirect to CAS server unless ticket parameter
   my %args = $r->args();
@@ -302,6 +305,7 @@ sub CASServerPath ($$$) {
 
   die "Invalid CAS Server path $arg." unless ($arg =~ m/^\//);
 
+  $arg = '' if $arg eq '/';
   $cfg->{_cas_path} = $arg;
 
 }
@@ -522,7 +526,7 @@ access deafault values
 
 =head1 VERSION
 
-This documentation describes Apache::AuthCASSimple version 0.0.1
+This documentation describes Apache::AuthCASSimple version 0.0.4
 
 =head1 BUGS AND TROUBLESHOOTING
 

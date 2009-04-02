@@ -19,6 +19,7 @@ inc     $apache->inc();
 build_requires  'mod_perl' => 1.0;
 build_requires  'Apache::src';
 build_requires  'Pod::Coverage';
+build_requires  'Test::More';
 
 auto_install;
 
